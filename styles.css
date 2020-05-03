@@ -40,9 +40,15 @@ body{
     align-items: center; 
     font-size: 25px; 
     color: white;
-    background-color: black;`
-
+    background-color: black;
+}
+.option:hover{
+    background-color: #595959;
 }
 .number, #decimal, #negate{
     background-color: #595959;
+}
+
+.number:hover, #decimal:hover, #negate:hover{
+    background-color: black;
 }
