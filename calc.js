@@ -1,4 +1,5 @@
 
+// set up global variables
 let input1 = NaN;
 let input2 = NaN;
 let currOp = "";
@@ -7,14 +8,7 @@ let justEntered = false;
 let display = document.querySelector("#display");
 
 
-let options = document.querySelectorAll(".option");
-options.forEach((option) => {
-    option.style.cssText = 
-    `display: flex; justify-content: center; align-items:center; 
-    font-size:25px; color: white;background-color: black;`;
-});
-
-
+// clear button functionality
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener('click',clear);
 function clear(){
@@ -25,6 +19,7 @@ function clear(){
     justEntered = false;
 }
 
+// delete button functionality
 let deleteButton = document.querySelector("#delete");
 deleteButton.addEventListener('click',deleteNum);
 function deleteNum(){
@@ -37,16 +32,19 @@ function deleteNum(){
     display.innerText = displayText;
 }
 
+// decimal button functionality
 let decimalButton = document.querySelector("#decimal");
 decimalButton.addEventListener('click',addDecimal);
 function addDecimal(){
     let displayText = display.innerText;
-    if(displayText < 12 && displayText.indexOf('.') == -1){
+    // only one decimal at a time
+    if(displayText.length < 12 && displayText.indexOf('.') == -1){
         displayText+=".";
     }
     display.innerText = displayText;
 }
 
+// negation button functionality
 let negate = document.querySelector("#negate");
 negate.addEventListener('click',negateVal);
 function negateVal(){
@@ -55,6 +53,7 @@ function negateVal(){
     display.innerText = "" + displayText;
 }
 
+// divide by 100 if number not too big
 let percent = document.querySelector("#percent");
 percent.addEventListener('click',percentVal);
 function percentVal(){
@@ -65,15 +64,18 @@ function percentVal(){
     }
 }
 
+// adds another digit to the current
 let numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener('click',(e) => {
         let displayText = display.innerText;
         if(displayText.length <= 13){
+            // reset if number was just calculated
             if(justEntered){
                 clear();
                 displayText = "";
             }
+            // remove placeholder 0
             if(displayText === "0"){
                 displayText = "";
             }
@@ -84,6 +86,7 @@ numbers.forEach((number) => {
     });
 });
 
+// perform desired operation on first number
 let opButtons = document.querySelectorAll(".operator");
 console.log(opButtons);
 opButtons.forEach((opButton) => {
@@ -101,7 +104,7 @@ opButtons.forEach((opButton) => {
     });
 });
 
-
+// compute using inputs and operator
 let equals = document.querySelector("#equals");
 equals.addEventListener('click',evaluate);
 
@@ -119,6 +122,7 @@ function evaluate(){
     justEntered = true;
 }
 
+// remove trailing zeroes
 function cleanResult(str){
     let index = str.length-1;
     while(str.charAt(index) === "0"){
@@ -127,6 +131,7 @@ function cleanResult(str){
     return str.substring(0,index+1);
 }
 
+// basic arithmetic
 function operate(){
     switch(currOp){
         case "+":

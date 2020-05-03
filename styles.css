@@ -33,3 +33,16 @@ body{
     justify-items: stretch;
     
 }
+
+.option{
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    font-size: 25px; 
+    color: white;
+    background-color: black;`
+
+}
+.number, #decimal, #negate{
+    background-color: #595959;
+}
